@@ -79,13 +79,25 @@ yarn add eslint@8
 // @ts-nocheck en \_app.tsx
 yarn dev y mientras se está ejecutanto, yarn build pq sino falla el yarn build pq no encuentra los datos de la api del servidor para crear las paginas estáticaso
 en Vercer cambiar a yarn install y a yarn build
-añado a next.config.js para que ignore los errores de Eslint:  eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
-    ignoreDuringBuilds: true,
-  },
-  eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
-    ignoreDuringBuilds: true,
-  },
+añado a next.config.js para que ignore los errores de Eslint: eslint: {
+// Warning: This allows production builds to successfully complete even if
+// your project has ESLint errors.
+ignoreDuringBuilds: true,
+},
+eslint: {
+// Warning: This allows production builds to successfully complete even if
+// your project has ESLint errors.
+ignoreDuringBuilds: true,
+},
+
+# en local
+
+yarn dev y cuando está funcionado hago DOS VECES yarn build -> funciona a la segunda
+
+# falla al desplegar en Vercel, solucion:
+
+https://www.youtube.com/watch?v=77AukMrHu8I&t=779s&pp=ygUwaG93IHRvIGRlcGxvdCAgbmV4dC5qcyAxMy8xNCB3aXRoIGFwaSByb3V0ZXMgdG8g
+en .env -> NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:3000 -> que puedo usar en el cliente(con /api/movies funciona) y en el server (necesito todo este rollo)
+añado if (!process.env. NEXT_PUBLIC_API_BASE_URL) return null; -> en el page/index.tsx para que no haga nada y simplemente no de una url vercel y cuando se haya desplegado
+y asignado la url, añado la variable de entorno NEXT_PUBLIC_API_BASE_URL en Vercel con la dirección que me ha asignado vercel.
+Redeploy el proyecto
