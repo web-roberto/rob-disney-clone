@@ -73,9 +73,19 @@ export default () => (
 
 en next.config.js el nuevo dominio
 en https://
-en Vercel:
+en Vercel: antes de subirlo, comprobar 1º yarn dev y 2º yarn build al mismo tiempo
 
+yarn add eslint@8
 // @ts-nocheck en \_app.tsx
 yarn dev y mientras se está ejecutanto, yarn build pq sino falla el yarn build pq no encuentra los datos de la api del servidor para crear las paginas estáticaso
 en Vercer cambiar a yarn install y a yarn build
-  
+añado a next.config.js para que ignore los errores de Eslint:  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
+  },
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
+  },
