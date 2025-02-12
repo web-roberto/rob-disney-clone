@@ -32,7 +32,7 @@ export default function MovieInformation({ movieResults }: Props) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch();
+  const res = await fetch(`${process.env.URL_PROD}/api/movies`);
   const movieData = await res.json();
 
   const paths = movieData?.map((movie: MovieListType) => ({
