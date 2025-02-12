@@ -15,6 +15,8 @@ interface Props {
 export default function Home({ movieResults }: Props) {
   const { data: session, status } = useSession();
   if (!process.env.NEXT_PUBLIC_API_BASE_URL) return null; //no hagas nada en el 1er despliegue y que me asigne una url vercel y la pondre en variasble entorno de vercel NEXT_PUBLIC_API_BASE_URL
+  console.log('----- pages/index.tsx-----Home-NEXT_PUBLIC_API_BASE_URL true- ',process.env.NEXT_PUBLIC_API_BASE_URL)
+
   const router = useRouter();
 
   useEffect(() => {
@@ -42,8 +44,8 @@ const GetAllMovies=async ()=> {
 }
 export const getServerSideProps: GetServerSideProps = async () => {
   let movieResults=[];
-  if (process.env.NEXT_PUBLIC_API_BASE_URL)  //no hagas nada en el 1er despliegue y que me asigne una url vercel y la pondre en variasble entorno de vercel NEXT_PUBLIC_API_BASE_URL
-   movieResults = await GetAllMovies() 
+  if (process.env.NEXT_PUBLIC_API_BASE_URL)  { movieResults = await GetAllMovies() }
+   console.log('----- pages/index.tsx-----getServerSideProps-NEXT_PUBLIC_API_BASE_URL true- ',process.env.NEXT_PUBLIC_API_BASE_URL)
 
   return {
     props: {
