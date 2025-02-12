@@ -74,3 +74,5 @@ export default () => (
 en next.config.js el nuevo dominio
 en https://
 en Vercel:
+
+// @ts-nocheck en _app.tsx
