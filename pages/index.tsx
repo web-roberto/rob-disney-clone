@@ -37,7 +37,7 @@ export default function Home({ movieResults }: Props) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
- const movieResults = await fetch(`${process.env.URL_PROD}/api/movies`).then((res) => res.json());
+ const movieResults = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/movies`).then((res) => res.json());
   return {
     props: {
       movieResults,

@@ -75,4 +75,7 @@ en next.config.js el nuevo dominio
 en https://
 en Vercel:
 
-// @ts-nocheck en _app.tsx
+// @ts-nocheck en \_app.tsx
+yarn dev y mientras se está ejecutanto, yarn build pq sino falla el yarn build pq no encuentra los datos de la api del servidor para crear las paginas estáticaso
+en Vercer cambiar a yarn install y a yarn build
+  

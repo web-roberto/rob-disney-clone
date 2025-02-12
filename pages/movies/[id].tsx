@@ -15,6 +15,9 @@ interface Props {
 export default function MovieInformation({ movieResults }: Props) {
   const { data: session, status } = useSession();
   const router = useRouter();
+    console.log('############modulo ppal ##### process.env.NEXT_PUBLIC_API_URL',process.env.NEXT_PUBLIC_API_URL)
+
+  console.log('################# props recibido de el componente ppal',movieResults)
 
   useEffect(() => {
     if (!session) {
@@ -32,9 +35,14 @@ export default function MovieInformation({ movieResults }: Props) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch(`${process.env.URL_PROD}/api/movies`);
+  console.log('###########GetStaticPaths###### process.env.NEXT_PUBLIC_API_URL',process.env.NEXT_PUBLIC_API_URL)
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/movies`);
+  //const res = await fetch(`http://localhost:3000/api/movies`);
+
   const movieData = await res.json();
 
+  console.log('################# movieData en getStaticPaths',movieData)
   const paths = movieData?.map((movie: MovieListType) => ({
     params: { id: String(movie.id) },
   }));
@@ -50,11 +58,15 @@ interface IParams extends ParsedUrlQuery {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
+  console.log('###########getStaticProps###### process.env.NEXT_PUBLIC_API_URL',process.env.NEXT_PUBLIC_API_URL)
+
   const { id } = context.params as IParams;
+  console.log('################# context.params en getStaticProps',{context})
 
   const movieResults = await fetch(
-    `${process.env.URL_PROD}/api/movies/${id}`
+    `${process.env.NEXT_PUBLIC_API_URL}/api/movies/${id}`
   ).then((res) => res.json());
+  console.log('################# movieResults en getStaticProps',movieResults)
 
   return {
     props: {
