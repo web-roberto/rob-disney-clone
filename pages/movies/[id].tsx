@@ -43,10 +43,10 @@ const GetOneMovies=async (id:string)=> {
 }
 export const getStaticPaths: GetStaticPaths = async () => {
   //## incio ################# para el primer despliegue: ###############
-  let movieData=[];
-  if (process.env.NEXT_PUBLIC_API_BASE_URL)   { movieData = await GetAllMovies();}
-  console.log('----- pages/movies/index.tsx-----getStaticPaths-NEXT_PUBLIC_API_BASE_URL true- ',process.env.NEXT_PUBLIC_API_BASE_URL)
-
+  // let movieData=[];
+  // if (process.env.NEXT_PUBLIC_API_BASE_URL)   { movieData = await GetAllMovies();}
+  // console.log('----- pages/movies/index.tsx-----getStaticPaths-NEXT_PUBLIC_API_BASE_URL true- ',process.env.NEXT_PUBLIC_API_BASE_URL)
+  const movieData = await GetAllMovies();
   //## fin ################# para el primer despliegue: ###############
 
   const paths = movieData?.map((movie: MovieListType) => ({
@@ -68,11 +68,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const { id } = context.params as IParams;
 
   //## incio ################# para el primer despliegue: ###############
-  let movieResults=[];
-  if (process.env.NEXT_PUBLIC_API_BASE_URL) {movieResults = await GetOneMovies(id);}
-  //## fin ################# para el primer despliegue: ###############
-  console.log('----- pages/movies/index.tsx-----getStaticProps-NEXT_PUBLIC_API_BASE_URL true- ',process.env.NEXT_PUBLIC_API_BASE_URL)
-
+  // let movieResults=[];
+  // if (process.env.NEXT_PUBLIC_API_BASE_URL) {movieResults = await GetOneMovies(id);}
+  // //## fin ################# para el primer despliegue: ###############
+  // console.log('----- pages/movies/index.tsx-----getStaticProps-NEXT_PUBLIC_API_BASE_URL true- ',process.env.NEXT_PUBLIC_API_BASE_URL)
+  const movieResults = await GetOneMovies(id);
   return {
     props: {
       movieResults,
