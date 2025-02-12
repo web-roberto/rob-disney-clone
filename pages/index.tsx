@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import HomeLayout from "../components/HomeLayout";
 import { MovieListType } from "../types/MovieList";
+require('dotenv').config()
+
 
 interface Props {
   movieResults: MovieListType[];
@@ -35,10 +37,7 @@ export default function Home({ movieResults }: Props) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const movieResults = await fetch(
-    "https://movies-api-wine.vercel.app/api/movie"
-  ).then((res) => res.json());
-
+ const movieResults = await fetch("http://localhost:3000/api/movies").then((res) => res.json());
   return {
     props: {
       movieResults,

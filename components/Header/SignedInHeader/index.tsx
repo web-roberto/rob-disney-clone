@@ -1,4 +1,4 @@
-import { Session } from "next-auth";
+import { Session } from "next-auth"; //the Type
 import { signOut } from "next-auth/react";
 import React from "react";
 import { DropDown, NavMenu, SignOut, UserImg } from "../styles";
@@ -8,8 +8,8 @@ interface Props {
 }
 
 function SignedInHeader({ session }: Props) {
-  const image = session?.user?.image as string;
-  const name = session?.user?.name as string;
+  const image = session?.user?.image as string; //la de mi cuenta de Google
+  const name = session?.user?.name as string;  //el de mi cuenta de Google
   return (
     <>
       <NavMenu>
