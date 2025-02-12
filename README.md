@@ -74,7 +74,3 @@ export default () => (
 en next.config.js el nuevo dominio
 en https://
 en Vercel:
-GOOGLE_CLIENT_ID="169681188903-0saocmjp3l3q87mmooo1pi32sc6omchr.apps.googleusercontent.com"
-GOOGLE_CLIENT_SECRET="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"
-URL_DEV="http://localhost:3000/api/movies"
-SECRET="lassuposicionessonlasmadresdelasmetedurasdepata"
