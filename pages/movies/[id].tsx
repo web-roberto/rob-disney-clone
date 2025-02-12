@@ -7,7 +7,6 @@ import FilmLayout from "../../components/FilmLayout";
 import { MovieListType } from "../../types/MovieList";
 require('dotenv').config()
 
-
 interface Props {
   movieResults: MovieListType;
 }
@@ -15,9 +14,9 @@ interface Props {
 export default function MovieInformation({ movieResults }: Props) {
   const { data: session, status } = useSession();
   const router = useRouter();
-    console.log('############modulo ppal ##### process.env.NEXT_PUBLIC_API_BASE_URL',process.env.NEXT_PUBLIC_API_BASE_URL)
+   // console.log('############modulo ppal ##### process.env.NEXT_PUBLIC_API_BASE_URL',process.env.NEXT_PUBLIC_API_BASE_URL)
 
-  console.log('################# props recibido de el componente ppal',movieResults)
+  //console.log('################# props recibido de el componente ppal',movieResults)
 
   useEffect(() => {
     if (!session) {
@@ -43,18 +42,11 @@ const GetOneMovies=async (id:string)=> {
   return await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/movies/${id}`).then((res) => res.json());
 }
 export const getStaticPaths: GetStaticPaths = async () => {
-  //console.log('###########GetStaticPaths###### process.env.NEXT_PUBLIC_API_BASE_URL',process.env.NEXT_PUBLIC_API_BASE_URL)
-
-  //const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/movies`);
-  //const res = await fetch(`http://localhost:3000/api/movies`);
-
-  //const movieData = await res.json();
+  //## incio ################# para el primer despliegue: ###############
   let movieData=[];
-  if (process.env.NEXT_PUBLIC_API_BASE_URL)  //no hagas nada en el 1er despliegue y que me asigne una url vercel y la pondre en variasble entorno de vercel NEXT_PUBLIC_API_BASE_URL
-   movieData = await GetAllMovies();
+  if (process.env.NEXT_PUBLIC_API_BASE_URL)   { movieData = await GetAllMovies();}
+  //## fin ################# para el primer despliegue: ###############
 
-
-  //console.log('################# movieData en getStaticPaths',movieData)
   const paths = movieData?.map((movie: MovieListType) => ({
     params: { id: String(movie.id) },
   }));
@@ -71,15 +63,13 @@ interface IParams extends ParsedUrlQuery {
 
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  //console.log('###########getStaticProps###### process.env.NEXT_PUBLIC_API_BASE_URL',process.env.NEXT_PUBLIC_API_BASE_URL)
-
   const { id } = context.params as IParams;
-  //console.log('################# context.params en getStaticProps',{context})
+
+  //## incio ################# para el primer despliegue: ###############
   let movieResults=[];
-  if (process.env.NEXT_PUBLIC_API_BASE_URL)  //no hagas nada en el 1er despliegue y que me asigne una url vercel y la pondre en variasble entorno de vercel NEXT_PUBLIC_API_BASE_URL
-  
-   movieResults = await GetOneMovies(id);
- // console.log('################# movieResults en getStaticProps',movieResults)
+  if (process.env.NEXT_PUBLIC_API_BASE_URL) {movieResults = await GetOneMovies(id);}
+  //## fin ################# para el primer despliegue: ###############
+   
 
   return {
     props: {

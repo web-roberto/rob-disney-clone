@@ -98,6 +98,15 @@ yarn dev y cuando está funcionado hago DOS VECES yarn build -> funciona a la se
 
 https://www.youtube.com/watch?v=77AukMrHu8I&t=779s&pp=ygUwaG93IHRvIGRlcGxvdCAgbmV4dC5qcyAxMy8xNCB3aXRoIGFwaSByb3V0ZXMgdG8g
 en .env -> NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:3000 -> que puedo usar en el cliente(con /api/movies funciona) y en el server (necesito todo este rollo)
-añado if (!process.env. NEXT_PUBLIC_API_BASE_URL) return null; -> en el page/index.tsx para que no haga nada y simplemente no de una url vercel y cuando se haya desplegado
+añado if (!process.env.NEXT_PUBLIC_API_BASE_URL) return null; -> en el page/index.tsx para que no haga nada y simplemente no de una url vercel y cuando se haya desplegado
 y asignado la url, añado la variable de entorno NEXT_PUBLIC_API_BASE_URL en Vercel con la dirección que me ha asignado vercel.
 Redeploy el proyecto
+
+//################### para el primer despliegue: ############### -> en pages/index.tsx y en los getStaticProps y getServerSideProps
+
+Tras el 1er despliegue pongo el NEXT_PUBLIC_API_BASE_URL y cambio en google console la direccion para que deje trabajar desde el dominio de mi app
+en \_app.tsx añado el if return null
+export default function App({ Component, pageProps }: AppProps) {
+if (!process.env.NEXT_PUBLIC_API_BASE_URL) return null; //no hagas nada en el 1er despliegue y que me asigne una url vercel y la pondre en variasble entorno de vercel NEXT_PUBLIC_API_BASE_URL
+return (
+<>
