@@ -49,8 +49,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   //const res = await fetch(`http://localhost:3000/api/movies`);
 
   //const movieData = await res.json();
-
-  const movieData = await GetAllMovies();
+  let movieData=[];
+  if (process.env.NEXT_PUBLIC_API_BASE_URL)  //no hagas nada en el 1er despliegue y que me asigne una url vercel y la pondre en variasble entorno de vercel NEXT_PUBLIC_API_BASE_URL
+   movieData = await GetAllMovies();
 
 
   //console.log('################# movieData en getStaticPaths',movieData)
@@ -74,8 +75,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const { id } = context.params as IParams;
   //console.log('################# context.params en getStaticProps',{context})
-
-  const movieResults = await GetOneMovies(id);
+  let movieResults=[];
+  if (process.env.NEXT_PUBLIC_API_BASE_URL)  //no hagas nada en el 1er despliegue y que me asigne una url vercel y la pondre en variasble entorno de vercel NEXT_PUBLIC_API_BASE_URL
+  
+   movieResults = await GetOneMovies(id);
  // console.log('################# movieResults en getStaticProps',movieResults)
 
   return {

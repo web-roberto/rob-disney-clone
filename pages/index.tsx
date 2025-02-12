@@ -41,7 +41,9 @@ const GetAllMovies=async ()=> {
   return await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/movies`).then((res) => res.json());
 }
 export const getServerSideProps: GetServerSideProps = async () => {
-  const movieResults = await GetAllMovies() 
+  let movieResults=[];
+  if (process.env.NEXT_PUBLIC_API_BASE_URL)  //no hagas nada en el 1er despliegue y que me asigne una url vercel y la pondre en variasble entorno de vercel NEXT_PUBLIC_API_BASE_URL
+   movieResults = await GetAllMovies() 
 
   return {
     props: {
