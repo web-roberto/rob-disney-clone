@@ -15,13 +15,17 @@ interface Props {
 export default function Home({ movieResults }: Props) {
   const { data: session, status } = useSession();
   // if (!process.env.NEXT_PUBLIC_API_BASE_URL) return null; //no hagas nada en el 1er despliegue y que me asigne una url vercel y la pondre en variasble entorno de vercel NEXT_PUBLIC_API_BASE_URL
-  // console.log('----- pages/index.tsx-----Home-NEXT_PUBLIC_API_BASE_URL true- ',process.env.NEXT_PUBLIC_API_BASE_URL)
+  console.log('----- pages/index.tsx-----Home-NEXT_PUBLIC_API_BASE_URL true- ',process.env.NEXT_PUBLIC_API_BASE_URL)
+  console.log('---pages/index.tsx ---getServerSideProps->------GetAllMovies -> Home-> ---movieResults---',movieResults)
 
   const router = useRouter();
+  console.log('---pages/index.tsx ---getServerSideProps->------GetAllMovies -> Home-> ---session---',session)
 
   useEffect(() => {
     if (!session) {
       // redirect to the homepage
+      console.log('---pages/index.tsx ---getServerSideProps->------GetAllMovies -> Home-> ---session-  VOY A REDIDIGIR A LOGIN--',session)
+
       router.push({
         pathname: "/login",
       });
@@ -31,6 +35,7 @@ export default function Home({ movieResults }: Props) {
 
   if (status === "loading") return <p>Loading</p>;
 
+  
   if (session)
     return (
       <>
@@ -45,8 +50,9 @@ const GetAllMovies=async ()=> {
 export const getServerSideProps: GetServerSideProps = async () => {
   // let movieResults=[];
   // if (process.env.NEXT_PUBLIC_API_BASE_URL)  { movieResults = await GetAllMovies() }
-  //  console.log('----- pages/index.tsx-----getServerSideProps-NEXT_PUBLIC_API_BASE_URL true- ',process.env.NEXT_PUBLIC_API_BASE_URL)
+  console.log('----- pages/index.tsx-----getServerSideProps-NEXT_PUBLIC_API_BASE_URL true- ',process.env.NEXT_PUBLIC_API_BASE_URL)
    const movieResults = await GetAllMovies()
+   console.log('------getServerSideProps------GetAllMovies---movieResults---',movieResults)
   return {
     props: {
       movieResults,

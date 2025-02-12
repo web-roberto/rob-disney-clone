@@ -10,6 +10,8 @@ interface Props {
 }
 
 function HomeLayout({ movieResults }: Props) {
+  console.log('---HomeLayout> ---movieResults---',movieResults)
+
   return (
     <Container>
       <SliderBanner />

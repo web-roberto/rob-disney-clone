@@ -18,7 +18,7 @@ const theme: DefaultTheme = {
 
 export default function App({ Component, pageProps }: AppProps) {
   if (!process.env.NEXT_PUBLIC_API_BASE_URL) return null; //no hagas nada en el 1er despliegue y que me asigne una url vercel y la pondre en variasble entorno de vercel NEXT_PUBLIC_API_BASE_URL
- console.log('---NEXT_PUBLIC_API_BASE_URL true- ',process.env.NEXT_PUBLIC_API_BASE_URL)
+ console.log('--en App--NEXT_PUBLIC_API_BASE_URL true- ',process.env.NEXT_PUBLIC_API_BASE_URL)
   return (
     <>
       <ThemeProvider theme={theme}>
